@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
 
-export default class RegisterAnimal extends Component {
+export default class BecomeOwner extends Component {
   constructor() {
     super();
 
     this.state = {
         name: '',
-        species: '',
-        age: ''
+        email: ''
       }
       this.submit = this.submit.bind(this);
   }
 
   submit(e) {
   e.preventDefault();
-  console.log('final:' + this.state);
+  console.log('final: ' + this.state.name + " " + this.state.email);
   // StockActions.searchAPI(this.state.task)
-  this.setState({name: '', species: '', age: ''});
+  this.setState({name: '', email: ''});
   }
 
   render() {
@@ -25,26 +24,19 @@ export default class RegisterAnimal extends Component {
       <div className="container">
         <form className="col-xs-3" onSubmit={this.submit}>
           <div className="form-group">
-            <label>Enter pet for adoption:</label>
+            <label>Enter name</label>
             <input type="text"
                    className="form-control"
-                   placeholder="pet name"
+                   placeholder="name"
                    value={ this.state.name }
                    onChange={(e) => this.setState({name: e.target.value})}/>
 
-            <label>Enter species:</label>
+            <label>Enter email:</label>
             <input type="text"
                    className="form-control"
-                   placeholder="species"
-                   value={ this.state.species }
-                   onChange={(e) => this.setState({species: e.target.value})}/>
-
-            <label>Enter age:</label>
-            <input type="number"
-                   className="form-control"
-                   placeholder="age"
-                   value={ this.state.age }
-                   onChange={(e) => this.setState({age: e.target.value})}/>
+                   placeholder="email"
+                   value={ this.state.email }
+                   onChange={(e) => this.setState({email: e.target.value})}/>
           </div>
           <button type="submit" className="btn btn-success">Submit</button>
         </form>
