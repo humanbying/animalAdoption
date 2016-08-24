@@ -15,4 +15,19 @@ router.route('/')
     })
   });
 
+  router.route('/:id')
+    .get((req, res) => {
+      Person
+        .findById(req.params.id, (err, person) => {
+          res.status(err ? 400 : 200).send(err || person)
+        })
+    })
+    .delete((req, res) => {
+      Person
+        .findByIdAndRemove(req.params.id, (err, person ) => {
+          res.status(err ? 400 : 200).send(err || person.name + ' has been removed')
+        })
+    })
+
+
 module.exports = router;
