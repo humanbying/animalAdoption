@@ -3,6 +3,7 @@ import RegisterAnimal from './RegisterAnimal';
 import BecomeOwner from './BecomeOwner';
 import ShowAllOwners from './ShowAllOwners';
 import ShowAllPets from './ShowAllPets';
+import AdoptAPet from './AdoptAPet';
 import NavBar from './NavBar'
 
 export default class App extends Component {
@@ -15,8 +16,10 @@ export default class App extends Component {
         <NavBar to="/">| Home |</NavBar>
         <NavBar to="/RegisterAnimal">| Add Pets |</NavBar>
         <NavBar to="/BecomeOwner">| Become an Owner |</NavBar>
+        <NavBar to="/AdoptAPet">| Adopt A Pet |</NavBar>
         <NavBar to="/ShowAllPets">| Show All Pets |</NavBar>
         <NavBar to="/ShowAllOwners">| Show All Owners |</NavBar>
+
         </b></h4>
         <hr/>
         {this.props.children}
