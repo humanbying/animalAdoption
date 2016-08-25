@@ -4,6 +4,9 @@ import { render } from 'react-dom';
 import App from './components/App';
 import RegisterAnimal from './components/RegisterAnimal';
 import BecomeOwner from './components/BecomeOwner';
+import ShowAllPets from './components/ShowAllPets';
+import ShowAllOwners from './components/ShowAllOwners';
+
 
 class Main extends React.Component {
 
@@ -26,6 +29,8 @@ render(
       <IndexRoute component={Main}/>
       <Route path="/RegisterAnimal" component ={RegisterAnimal}/>
       <Route path="/BecomeOwner" component ={BecomeOwner}/>
+      <Route path="/ShowAllPets" component ={ShowAllPets}/>
+      <Route path="/ShowAllOwners" component ={ShowAllOwners}/>
     </Route>
   </Router>,
   document.getElementById('root')

@@ -7,7 +7,13 @@ const API = {
     axios.post('/api/animals', data)
       .then(res => res.data)
       .then(data => {
-        ServerActions.addPet(data)
+        ServerActions.addPetGetAll(data)
+      })
+  },
+  getAllPets() {
+    axios.get('/api/animals')
+      .then(res => {
+        ServerActions.getAllPets(res.data)
       })
   }
 }

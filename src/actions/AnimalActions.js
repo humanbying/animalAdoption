@@ -4,6 +4,9 @@ import API from '../API'
 const AnimalActions = {
   addOnePet(pet) {
     API.addOnePet(pet)
+  },
+  getAllPets() {
+    API.getAllPets()
   }
 }
 

@@ -1,10 +1,16 @@
 import AppDispatcher from '../AppDispatcher'
 
 const ServerActions = {
-  addPet(data) {
+  addPetGetAll(data) {
     AppDispatcher.dispatch({
-      type: "ADD_ONE_PET",
+      type: "GET_ALL_PETS",
       data
+    })
+  },
+  getAllPets(pets) {
+    AppDispatcher.dispatch({
+      type: "RECEIVE_ALL_PETS",
+      pets
     })
   }
 }
