@@ -28,13 +28,6 @@ getNewPets() {
   console.log(this.state);
 }
 
-
-  // getPets(){
-  //   this.setState({
-  //     pets: AnimalStore.getPets()
-  //   })
-  // }
-
   render() {
     let ListItems;
 
@@ -52,6 +45,9 @@ getNewPets() {
               <td>
                 {pet.age}
               </td>
+              <td>
+              <button className="btn-warning btn pull-right btn-xs">adopt</button>
+              </td>
             </tr>
           )
         })
@@ -60,7 +56,7 @@ getNewPets() {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Pet Name</th>
             <th>Species</th>
             <th>Age</th>
           </tr>

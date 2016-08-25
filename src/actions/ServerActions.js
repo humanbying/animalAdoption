@@ -23,6 +23,12 @@ const ServerActions = {
       type: "RECEIVE_ALL_PEOPLE",
       people
     })
+  },
+  setUser(person) {
+    AppDispatcher.dispatch({
+      type: "RECEIVE_PERSON",
+      person
+    })
   }
 }
 export default ServerActions

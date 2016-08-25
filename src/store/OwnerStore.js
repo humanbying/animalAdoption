@@ -3,6 +3,7 @@ import AppDispatcher from '../AppDispatcher'
 
 let _person;
 let _people;
+let _personInfo;
 
 class OwnerStore extends EventEmitter {
   constructor(){
@@ -17,8 +18,12 @@ class OwnerStore extends EventEmitter {
         _people = action.people;
         this.emit('GOT_NEW_PERSON');
         break;
+        case "RECEIVE_PERSON":
+        _personInfo = action.people;
+        this.emit('GOT_NEW_PERSON_INFO');
+        break;
       }
-    1});
+    });
     }
 
 
@@ -34,6 +39,11 @@ class OwnerStore extends EventEmitter {
   //   return _pet;
   // }
   //
+
+  personObj() {
+    return _personInfo;
+  }
+
   getAllPeople() {
     return _people;
   }

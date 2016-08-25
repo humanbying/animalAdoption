@@ -18,7 +18,6 @@ class Main extends React.Component {
     return(
       <div>
       from the home page
-        {this.props.children}
       </div>
     )
   }
