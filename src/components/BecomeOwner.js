@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import OwnerStore from '../store/OwnerStore';
+import AnimalActions from '../actions/AnimalActions';
 
 export default class BecomeOwner extends Component {
   constructor() {
@@ -9,12 +11,25 @@ export default class BecomeOwner extends Component {
         email: ''
       }
       this.submit = this.submit.bind(this);
+      this._onChange = this._onChange.bind(this)
   }
+
+  // componentDidMount() {
+  //   OwnerStore.startListening(this._onChange);
+  // }
+  // componentWillUnmount() {
+  //   OwnerStore.stopListening(this._onChange);
+  // }
+
+  _onChange() {
+      this.setState({
+        person: OwnerStore.showPerson()
+      });
+    }
 
   submit(e) {
   e.preventDefault();
-  console.log('final: ' + this.state.name + " " + this.state.email);
-  // StockActions.searchAPI(this.state.task)
+  AnimalActions.addOnePerson(this.state);
   this.setState({name: '', email: ''});
   }
 

@@ -12,6 +12,11 @@ const ServerActions = {
       type: "RECEIVE_ALL_PETS",
       pets
     })
+  },
+  addPerson(data) {
+    AppDispatcher.dispatch({
+      type: "SEND_PERSON"
+    })
   }
 }
 export default ServerActions

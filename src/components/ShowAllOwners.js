@@ -1,45 +1,83 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import OwnerStore from '../store/OwnerStore';
+import AnimalActions from '../actions/AnimalActions';
+
 
 export default class ShowAllOwners extends Component {
   constructor() {
     super();
 
     this.state = {
-        name: '',
-        email: ''
-      }
-      this.submit = this.submit.bind(this);
+      pets: null
+    }
+      this.getNewPets = this.getNewPets.bind(this);
   }
 
-  submit(e) {
-  e.preventDefault();
-  console.log('final: ' + this.state.name + " " + this.state.email);
-  // StockActions.searchAPI(this.state.task)
-  this.setState({name: '', email: ''});
+  componentDidMount() {
+    AnimalActions.getAllPets();
+    AnimalStore.on('GOT_NEW_PET', this.getNewPets);
   }
+  componentWillUnmount() {
+    AnimalStore.removeListener('GOT_NEW_PET', this.getNewPets);
+  }
+
+getNewPets() {
+  this.setState({
+    pets: AnimalStore.getAllPets()
+  })
+  console.log(this.state);
+}
+
+
+  // getPets(){
+  //   this.setState({
+  //     pets: AnimalStore.getPets()
+  //   })
+  // }
 
   render() {
-    return (
-      <div className="container">
-        <form className="col-xs-3" onSubmit={this.submit}>
-          <div className="form-group">
-            <label>Enter name</label>
-            <input type="text"
-                   className="form-control"
-                   placeholder="name"
-                   value={ this.state.name }
-                   onChange={(e) => this.setState({name: e.target.value})}/>
+    let ListItems;
 
-            <label>Enter email:</label>
-            <input type="text"
-                   className="form-control"
-                   placeholder="email"
-                   value={ this.state.email }
-                   onChange={(e) => this.setState({email: e.target.value})}/>
-          </div>
-          <button type="submit" className="btn btn-success">Submit</button>
-        </form>
-      </div>
+      if(this.state.pets) {
+
+         ListItems = this.state.pets.map((pet, index) => {
+          return (
+            <tr key = {index}>
+              <td>
+                {pet.name}
+              </td>
+              <td>
+                {pet.species}
+              </td>
+              <td>
+                {pet.age}
+              </td>
+            </tr>
+          )
+        })
+      }
+    return (
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ListItems}
+        </tbody>
+      </table>
+        /* <div className="container">
+          <h4>
+              <b>  Name: {this.state.pet.name}<br/>
+                   Species: {this.state.pet.species}<br/>
+                   Age: {this.state.pet.age}<br/>
+              </b>
+          </h4>
+        </div> */
+
     )
   }
 }

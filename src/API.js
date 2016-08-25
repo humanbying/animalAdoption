@@ -15,7 +15,14 @@ const API = {
       .then(res => {
         ServerActions.getAllPets(res.data)
       })
-  }
+  },
+  addOnePerson(data) {
+    axios.post('/api/people', data)
+      .then(res => res.data)
+      .then(data => {
+        ServerActions.addPerson(data)
+      })
+  },
 }
 
 export default API;
