@@ -1,6 +1,6 @@
 // CONSTANTS
 const PORT = process.env.PORT || 8000;
-const MONGO_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/animalAdoption';
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/animalAdoption';
 
 // PACKAGE REQUIRES
 const bodyParser = require('body-parser');
@@ -23,7 +23,7 @@ const app = express();
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../build')))
 } else {
-  
+
 // WEBPACK CONFIG
 const compiler = webpack(webpackConfig);
 
