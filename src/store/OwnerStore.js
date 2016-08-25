@@ -1,42 +1,42 @@
 import { EventEmitter } from "events";
 import AppDispatcher from '../AppDispatcher'
 
-// let _pet;
-// let _pets;
+let _person;
+let _people;
 
 class OwnerStore extends EventEmitter {
   constructor(){
     super();
     AppDispatcher.register(action => {
       switch(action.type) {
-        case "GET_ALL_PETS":
-        _pet = action.data;
-        this.emit('NEW_PET');
+        case "SEND_PERSON":
+        _person = action.data;
+        this.emit('NEW_PERSON');
         break;
-        case "RECEIVE_ALL_PETS":
-        _pets = action.pets;
-        this.emit('GOT_NEW_PET');
+        case "RECEIVE_ALL_PEOPLE":
+        _people = action.people;
+        this.emit('GOT_NEW_PERSON');
         break;
       }
-    });
+    1});
     }
-}
 
-  // startListening(cb) {
-  //   this.on('NEW_PET', cb);
-  // }
-  //
-  // stopListening(cb) {
-  //   this.removeListener('NEW_PET', cb);
-  // }
+
+  startListening(cb) {
+    this.on('NEW_PERSON', cb);
+  }
+
+  stopListening(cb) {
+    this.removeListener('NEW_PERSON', cb);
+  }
   //
   // showPet() {
   //   return _pet;
   // }
   //
-  // getAllPets() {
-  //   return _pets;
-  // }
-
+  getAllPeople() {
+    return _people;
+  }
+}
 
 export default new OwnerStore;

@@ -8,22 +8,22 @@ export default class ShowAllOwners extends Component {
     super();
 
     this.state = {
-      pets: null
+      people: null
     }
-      this.getNewPets = this.getNewPets.bind(this);
+      this.getNewPeople = this.getNewPeople.bind(this);
   }
 
   componentDidMount() {
-    AnimalActions.getAllPets();
-    AnimalStore.on('GOT_NEW_PET', this.getNewPets);
+    AnimalActions.getAllPeople();
+    OwnerStore.on('GOT_NEW_PERSON', this.getNewPeople);
   }
   componentWillUnmount() {
-    AnimalStore.removeListener('GOT_NEW_PET', this.getNewPets);
+    OwnerStore.removeListener('GOT_NEW_PERSON', this.getNewPeople);
   }
 
-getNewPets() {
+getNewPeople() {
   this.setState({
-    pets: AnimalStore.getAllPets()
+    people: OwnerStore.getAllPeople()
   })
   console.log(this.state);
 }
@@ -31,26 +31,23 @@ getNewPets() {
 
   // getPets(){
   //   this.setState({
-  //     pets: AnimalStore.getPets()
+  //     pets: OwnerStore.getPets()
   //   })
   // }
 
   render() {
     let ListItems;
 
-      if(this.state.pets) {
+      if(this.state.people) {
 
-         ListItems = this.state.pets.map((pet, index) => {
+         ListItems = this.state.people.map((person, index) => {
           return (
             <tr key = {index}>
               <td>
-                {pet.name}
+                {person.name}
               </td>
               <td>
-                {pet.species}
-              </td>
-              <td>
-                {pet.age}
+                {person.email}
               </td>
             </tr>
           )
@@ -61,23 +58,13 @@ getNewPets() {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Species</th>
-            <th>Age</th>
+            <th>E-mail</th>
           </tr>
         </thead>
         <tbody>
           {ListItems}
         </tbody>
       </table>
-        /* <div className="container">
-          <h4>
-              <b>  Name: {this.state.pet.name}<br/>
-                   Species: {this.state.pet.species}<br/>
-                   Age: {this.state.pet.age}<br/>
-              </b>
-          </h4>
-        </div> */
-
     )
   }
 }

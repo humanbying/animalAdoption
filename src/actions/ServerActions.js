@@ -17,6 +17,12 @@ const ServerActions = {
     AppDispatcher.dispatch({
       type: "SEND_PERSON"
     })
+  },
+  getAllPeople(people) {
+    AppDispatcher.dispatch({
+      type: "RECEIVE_ALL_PEOPLE",
+      people
+    })
   }
 }
 export default ServerActions

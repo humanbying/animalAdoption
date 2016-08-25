@@ -23,6 +23,12 @@ const API = {
         ServerActions.addPerson(data)
       })
   },
+  getAllPeople() {
+    axios.get('/api/people')
+      .then(res => {
+        ServerActions.getAllPeople(res.data)
+      })
+  }
 }
 
 export default API;

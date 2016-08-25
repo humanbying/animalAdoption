@@ -69,15 +69,6 @@ getNewPets() {
           {ListItems}
         </tbody>
       </table>
-        /* <div className="container">
-          <h4>
-              <b>  Name: {this.state.pet.name}<br/>
-                   Species: {this.state.pet.species}<br/>
-                   Age: {this.state.pet.age}<br/>
-              </b>
-          </h4>
-        </div> */
-
     )
   }
 }

@@ -10,6 +10,9 @@ const AnimalActions = {
   },
   addOnePerson(person) {
     API.addOnePerson(person)
+  },
+  getAllPeople() {
+    API.getAllPeople()
   }
 }
 
