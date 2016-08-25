@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AnimalStore from '../store/AnimalStore';
 import AnimalActions from '../actions/AnimalActions';
+// import AnimalActions from '../actions/AnimalActions';
+
 
 export default class RegisterAnimal extends Component {
   constructor() {
@@ -9,21 +11,25 @@ export default class RegisterAnimal extends Component {
     this.state = {
         name: '',
         species: '',
-        age: ''
+        age: '',
+        pet: {}
       }
       this.submit = this.submit.bind(this);
+      this._onChange = this._onChange.bind(this);
   }
 
-  // componentDidMount() {
-  //   // AnimalStore.startListening(this._onChange);
-  //   AnimalStore.on('NEW_PET', this.getPet);
-  // }
+  componentDidMount() {
+    AnimalStore.startListening(this._onChange);
+  }
+  componentWillUnmount() {
+    AnimalStore.stopListening(this._onChange);
+  }
 
-  // _onChange() {
-  //     this.setState({
-  //       todos: AnimalStore.getAll()
-  //     });
-  //   }
+  _onChange() {
+      this.setState({
+        pet: AnimalStore.showPet()
+      });
+    }
 
   submit(e) {
   e.preventDefault();
@@ -33,9 +39,15 @@ export default class RegisterAnimal extends Component {
   this.setState({name: '', species: '', age: ''});
   }
 
+  displayOnePet() {
+    this.setState({
+      name: AnimalStore.showPet()
+    })
+  }
+
   render() {
     // console.log(this.state);
-
+    // console.log(this.state.pet);
     return (
       <div className="container">
         <form className="col-xs-3" onSubmit={this.submit}>
@@ -65,9 +77,9 @@ export default class RegisterAnimal extends Component {
         </form>
         <div className="container">
           <h4>
-              <b>  Name: <br/>
-                   Species: <br/>
-                   Age: <br/>
+              <b>  Name: {this.state.pet.name}<br/>
+                   Species: {this.state.pet.species}<br/>
+                   Age: {this.state.pet.age}<br/>
               </b>
           </h4>
         </div>

@@ -7,15 +7,15 @@ class AnimalStore extends EventEmitter {
   constructor(){
     super();
 
-    // AppDispatcher.register(action => {
-    //   switch(action.type) {
-    //     case "ADD_ONE_PET":
-    //     _pet = action.data;
-    //     this.emit('NEW_PET');
-    //     break;
-    //
-    //   }
-    // });
+    AppDispatcher.register(action => {
+      switch(action.type) {
+        case "ADD_ONE_PET":
+        _pet = action.data;
+        this.emit('NEW_PET');
+        break;
+
+      }
+    });
   }
 
   startListening(cb) {
@@ -24,6 +24,10 @@ class AnimalStore extends EventEmitter {
 
   stopListening(cb) {
     this.removeListener('NEW_PET', cb);
+  }
+
+  showPet() {
+    return _pet;
   }
 
 }
