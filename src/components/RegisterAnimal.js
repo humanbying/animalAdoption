@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import AnimalStore from '../store/AnimalStore';
+import AnimalActions from '../actions/AnimalActions';
 
 export default class RegisterAnimal extends Component {
   constructor() {
@@ -12,15 +14,28 @@ export default class RegisterAnimal extends Component {
       this.submit = this.submit.bind(this);
   }
 
+  // componentDidMount() {
+  //   // AnimalStore.startListening(this._onChange);
+  //   AnimalStore.on('NEW_PET', this.getPet);
+  // }
+
+  // _onChange() {
+  //     this.setState({
+  //       todos: AnimalStore.getAll()
+  //     });
+  //   }
+
   submit(e) {
   e.preventDefault();
-  console.log('final:' + this.state);
-  // StockActions.searchAPI(this.state.task)
+  console.log('final:' + this.state.name + ' ' + this.state.species + ' '+ this.state.age);
+  console.log("this.state", this.state);
+  AnimalActions.addOnePet(this.state);
   this.setState({name: '', species: '', age: ''});
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
+
     return (
       <div className="container">
         <form className="col-xs-3" onSubmit={this.submit}>
@@ -48,7 +63,16 @@ export default class RegisterAnimal extends Component {
           </div>
           <button type="submit" className="btn btn-success">Submit</button>
         </form>
+        <div className="container">
+          <h4>
+              <b>  Name: <br/>
+                   Species: <br/>
+                   Age: <br/>
+              </b>
+          </h4>
+        </div>
       </div>
+
     )
   }
 }

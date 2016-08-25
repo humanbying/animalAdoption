@@ -19,7 +19,6 @@ export default class BecomeOwner extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="container">
         <form className="col-xs-3" onSubmit={this.submit}>
